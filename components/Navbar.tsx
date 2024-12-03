@@ -7,7 +7,7 @@ import { LoginMenu } from './LoginMenu';
 export function Navbar() {
     return (
         <nav
-            className={`fixed left-1/2 -translate-x-1/2 top-8 p-2 
+            className={`fixed z-50 left-1/2 -translate-x-1/2 top-8 p-2 
         bg-white/60 dark:bg-background/60 backdrop-blur-md border border-border
         rounded-full shadow-sm transition-[transform,background-color] duration-300 ease-in-out`}
         >

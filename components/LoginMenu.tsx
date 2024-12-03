@@ -11,7 +11,8 @@ import Image from 'next/image';
 
 export async function LoginMenu() {
 
-  const session = await auth();
+  //const session = await auth();
+  const session = null;
 
   return (
     <DropdownMenu>
@@ -25,7 +26,7 @@ export async function LoginMenu() {
             >
               <div className="relative size-10">
                 <Image
-                  src={session?.user?.image || ""}
+                  src={session?.user?.image || "https://th.bing.com/th/id/OIG3.gGVi4CMFbjCDlvEGCICj?pid=ImgGn"}
                   alt="Profile picture"
                   className="rounded-full"
                   fill
@@ -50,7 +51,7 @@ export async function LoginMenu() {
             <DropdownMenuItem asChild>
               <Link href="/profile" className="text-base font-mono mb-1">
                 <User />
-                <span>{session?.user?.name}</span>
+                <span>{session?.user?.name || "User"}</span>
               </Link>
             </DropdownMenuItem>
             <DropdownMenuItem asChild>

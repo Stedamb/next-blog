@@ -16,7 +16,7 @@ export type PostCardType = Omit<Post, "author" | "categories"> & {
 
 export function PostCard({ post }: { post: PostCardType }) {
   return (
-    <Card className="flex flex-col overflow-hidden">
+    <Card className="flex flex-col overflow-hidden z-10">
       {post.image && (
         <div className="aspect-video relative">
           <Image
