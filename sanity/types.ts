@@ -142,6 +142,7 @@ export type Post = {
   _updatedAt: string;
   _rev: string;
   title?: string;
+  description?: string;
   slug?: Slug;
   author?: {
     _ref: string;

@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from 'react';
 import { Sun, Moon } from 'lucide-react';
-import { Skeleton } from './ui/skeleton';
 
 export function ThemeSwitch() {
   const [isDark, setIsDark] = useState(false);
@@ -32,7 +31,7 @@ export function ThemeSwitch() {
 
   // Avoid hydration mismatch by not rendering until mounted
   if (!mounted) {
-    return <Sun className="size-6" />;
+    return <div className="p-6"><Sun className="size-6" /></div>;
   }
 
   return (

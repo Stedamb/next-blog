@@ -13,12 +13,12 @@ export function Navbar() {
         >
             <div className="relative flex items-center justify-between sm:justify-start">
                 {/* Mobile drawer */}
-                <div className="sm:hidden">
+                <div className="md:hidden">
                     <MobileDrawer />
                 </div>
 
                 {/* Desktop menu */}
-                <ul className="hidden sm:flex items-center gap-2 text-lg font-mono">
+                <ul className="hidden md:flex items-center gap-2 text-lg font-mono">
                     {menuItems.map(({ href, label, Icon }) => (
                         <li key={href}>
                             <Link

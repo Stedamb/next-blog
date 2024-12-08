@@ -11,8 +11,8 @@ import Image from 'next/image';
 
 export async function LoginMenu() {
 
-  //const session = await auth();
-  const session = null;
+  const session = await auth();
+  //const session = null;
 
   return (
     <DropdownMenu>

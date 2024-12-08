@@ -1,82 +1,56 @@
-import { client } from "@/sanity/lib/client";
-import { PostCard, PostCardType } from "@/components/post-card";
-import { Post } from "@/types/post";
-import Image from 'next/image';
+import Image from "next/image";
+import { PostCard } from "@/components/PostCard";
+import { getAllPosts } from "@/lib/sanity";
+import { FilterControls } from "@/components/FilterControls";
 
-export default async function BlogPage() {
-    const posts: Post[] = [
-      {
-        _id: '12345',
-        title: 'My Awesome Blog Post',
-        description: 'This is a description of my post.',
-        _createdAt: '2023-12-20T10:00:00Z',
-        views: 100,
-        author: 'John Doe',
-        image: 'https://picsum.photos/1920/1080',
-        category: 'Technology',
-      },
-      {
-        _id: '123452',
-        title: 'My Awesome Blog Post',
-        description: 'This is a description of my post.',
-        _createdAt: '2023-12-20T10:00:00Z',
-        views: 100,
-        author: 'John Doe',
-        image: 'https://picsum.photos/1920/1080',
-        category: 'Technology',
-      },
-      {
-        _id: '123451',
-        title: 'My Awesome Blog Post',
-        description: 'This is a description of my post.',
-        _createdAt: '2023-12-20T10:00:00Z',
-        views: 100,
-        author: 'John Doe',
-        image: 'https://picsum.photos/1920/1080',
-        category: 'Technology',
-      },
-    ];
+export default async function BlogPage(props: {
+  searchParams: Promise<{ [key: string]: string | undefined }>;
+}) {
+  const searchParams = await props.searchParams;
+  const { category, author, sort } = searchParams;
 
-    // const posts: PostCardType[] = await clien t.fetch(`*[_type == 'post']{
-    //     ...,
-    // author->{
-    //   name
-    // },
-    // categories[]->{
-    //     _key,
-    //     title
-    //   }
-    // }`);
-
-
+  const posts = await getAllPosts({
+    category,
+    author,
+    sortBy: sort as 'latest' | 'oldest' | 'title',
+  });
 
   return (
     <div className="max-w-[1920px] mx-auto py-4">
-      <div className="aspect-square md:aspect-video relative">
-          <Image
-            src="https://images.unsplash.com/photo-1635776062127-d379bfcba9f8?q=80&w=3432&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-            alt="Header Image"
-            fill
-            className="object-cover rounded-md"
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw"
-          />
-      </div>
-
-      <div className="flex flex-col items-start gap-4 md:flex-row md:justify-between md:gap-8">
-        <div className="flex-1 space-y-4">
-          <h1 className="inline-block font-mono text-4xl lg:text-5xl">
-            Blog
+      <div className="h-[calc(50vh-2rem)] relative">
+        <Image
+          src="https://images.unsplash.com/photo-1635776062127-d379bfcba9f8?q=80&w=3432&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+          alt="Blog Header Image"
+          fill
+          className="object-cover rounded-lg"
+          priority
+          sizes="100vw"
+        />
+        <div className="absolute left-1/2 top-[45%] sm:top-1/2 transform -translate-x-1/2 -translate-y-1/2">
+          <h1 className="text-purple-300 text-8xl sm:text-9xl font-clash font-medium">
+            BLOG
           </h1>
-          <p className="text-xl text-muted-foreground">
-            Thoughts, stories, and ideas.
-          </p>
+        </div>
+        <div className="absolute left-1/2 bottom-0 transform -translate-x-1/2 w-full">
+          <FilterControls
+            currentCategory={category}
+            currentAuthor={author}
+            currentSort={sort}
+          />
         </div>
       </div>
 
-      <div className="grid grid-cols-1 gap-6 pt-10 md:grid-cols-2">
-        {posts.map((post) => (
-          <PostCard key={post._id} post={post} />
-        ))}
+      <div className="max-w-4xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-4 lg:mt-8">
+          {posts.map((post) => (
+            <PostCard key={post.slug?.current} post={post} />
+          ))}
+          {posts.length === 0 && (
+            <p className="col-span-2 text-center text-muted-foreground">
+              No posts found with the selected filters.
+            </p>
+          )}
+        </div>
       </div>
     </div>
   );

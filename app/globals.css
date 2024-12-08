@@ -60,12 +60,38 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground transition-colors duration-300;
+    @apply transition-colors duration-300 bg-background text-foreground;
   }
   html {
     @apply transition-colors duration-300;
   }
   a, div, button, p, h1, h2, h3, h4, h5, h6 {
     @apply transition-colors duration-300;
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-tr from-[#d1c0ed] via-[#7357b2] to-[#8e44ad];
+  }
+
+  .skeleton-loading {
+    @apply overflow-hidden relative;
+  }
+
+  .skeleton-loading::before {
+    @apply absolute inset-0 rounded-lg;
+    background-color: blueviolet;
+    content: "";
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: .5;
+    }
   }
 }

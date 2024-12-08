@@ -14,7 +14,7 @@ export function MobileDrawer() {
     <Drawer>
       <DrawerTrigger asChild>
         <button
-          className="p-4 rounded-full hover:bg-foreground/5 flex items-center justify-center"
+          className="p-6 rounded-full hover:bg-foreground/5 flex items-center justify-center"
           aria-label="Toggle menu"
         >
           <Menu className="w-6 h-6" />

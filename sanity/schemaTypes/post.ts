@@ -10,6 +10,10 @@ export const post = defineType({
             type: "string",
         }),
         defineField({
+            name: "description",
+            type: "text",
+        }),
+        defineField({
             name: "slug",
             type: "slug",
             options: {
@@ -43,6 +47,7 @@ export const post = defineType({
     preview: {
         select: {
             title: "title",
+            description: "description",
             author: "author.name",
             media: "mainImage",
         },

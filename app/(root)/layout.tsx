@@ -14,6 +14,16 @@ const geistMono = localFont({
   variable: "--font-geist-mono",
   weight: "100 900",
 });
+const clashDisplay = localFont({
+  src: "../fonts/ClashDisplay-Variable.ttf",
+  variable: "--font-clash-display",
+  weight: "100 900",
+});
+const spaceGrotesk = localFont({
+  src: "../fonts/SpaceGrotesk-VariableFont_wght.ttf",
+  variable: "--font-space-grotesk",
+  weight: "100 900",
+});
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -28,7 +38,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${spaceGrotesk.variable} ${clashDisplay.variable} antialiased`}
       >
         <Navbar />
         <main className="mx-4">
