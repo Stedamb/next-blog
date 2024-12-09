@@ -13,13 +13,13 @@ export async function getAllPosts(params?: GetAllPostsParams): Promise<PostCardT
 
   // Add category filter
   if (params?.category) {
-    query += ` && $category in categories[]->slug.current`;
+    query += ` && $category in categories[]->title`;
     queryParams.category = params.category;
   }
 
   // Add author filter
   if (params?.author) {
-    query += ` && author->slug.current == $author`;
+    query += ` && author->username == $author`;
     queryParams.author = params.author;
   }
 
@@ -84,4 +84,22 @@ export async function getPost(slug: string): Promise<BlogPostType> {
 
   const post = await client.fetch(query, { slug });
   return post;
+}
+
+export async function getAllCategories() {
+  return await client.fetch(
+    `*[_type == "category" && defined(title)] | order(title asc) {
+      title
+    }`
+  );
+}
+
+export async function getAllAuthors() {
+  return await client.fetch(
+    `*[_type == "author" && defined(name)] | order(name asc) {
+      name,
+      username,
+      id
+    }`
+  );
 }

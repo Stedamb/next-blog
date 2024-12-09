@@ -9,16 +9,9 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-
-interface Category {
-  title: string;
-  slug?: { current: string } | null;
-}
-
-interface Author {
-  name: string;
-  slug?: { current: string } | null;
-}
+import { Category } from '@/sanity/types';
+import { Author } from '@/sanity/types';
+import { getAllCategories, getAllAuthors } from '@/lib/sanity';
 
 interface FilterControlsProps {
   currentCategory?: string;
@@ -36,20 +29,20 @@ export function FilterControls({
   const [categories, setCategories] = useState<Category[]>([]);
   const [authors, setAuthors] = useState<Author[]>([]);
 
-  // Fetch categories and authors
-  useEffect(() => {
-    async function fetchFilters() {
-      try {
-        const [categoriesRes, authorsRes] = await Promise.all([
-          fetch('/api/categories').then(res => res.json()),
-          fetch('/api/authors').then(res => res.json())
-        ]);
-        setCategories(categoriesRes);
-        setAuthors(authorsRes);
-      } catch (error) {
-        console.error('Error fetching filters:', error);
-      }
+  const fetchFilters = async () => {
+    try {
+      const [categoriesData, authorsData] = await Promise.all([
+        getAllCategories(),
+        getAllAuthors()
+      ]);
+      setCategories(categoriesData);
+      setAuthors(authorsData);
+    } catch (error) {
+      console.error('Error fetching filters:', error);
     }
+  };
+
+  useEffect(() => {
     fetchFilters();
   }, []);
 
@@ -92,11 +85,11 @@ export function FilterControls({
           <SelectContent>
             <SelectItem value="all">All Categories</SelectItem>
             {categories
-              .filter(category => category.slug?.current)
+              .filter(category => category.title)
               .map((category) => (
                 <SelectItem 
-                  key={category.slug!.current} 
-                  value={category.slug!.current}
+                  key={category.title} 
+                  value={category.title || ''}
                 >
                   {category.title}
                 </SelectItem>
@@ -114,11 +107,11 @@ export function FilterControls({
           <SelectContent>
             <SelectItem value="all">All Authors</SelectItem>
             {authors
-              .filter(author => author.slug?.current)
+              .filter(author => author.username)
               .map((author) => (
                 <SelectItem 
-                  key={author.slug!.current} 
-                  value={author.slug!.current}
+                  key={author.username} 
+                  value={author.username || ''}
                 >
                   {author.name}
                 </SelectItem>

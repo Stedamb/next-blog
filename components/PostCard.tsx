@@ -35,7 +35,10 @@ export function PostCard({ post }: { post: PostCardType }) {
                   variant="secondary"
                   className="z-30 text-sm text-purple-700 bg-purple-500/10 dark:bg-purple-500/20 dark:text-purple-300"
                 >
-                  <Link href={`/blog/category/${category.slug?.current}`}>
+                  <Link 
+                    href={`/blog?category=${category.title}`}
+                    className="z-30"
+                  >
                     {category.title}
                   </Link>
                 </Badge>
