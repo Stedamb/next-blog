@@ -17,11 +17,11 @@ interface MapProps {
   };
 }
 
-export default function Map({ 
-  center = [-74.5, 40], 
-  zoom = 9, 
+export default function Map({
+  center = [-74.5, 40],
+  zoom = 9,
   className = 'size-full rounded-3xl',
-  marker = { coordinates: [-74.5, 40] }
+  marker
 }: MapProps) {
   const mapContainer = useRef<HTMLDivElement | null>(null);
   const map = useRef<mapboxgl.Map | null>(null);
@@ -53,12 +53,17 @@ export default function Map({
 
       // Ensure map is fully loaded
       map.current?.on('load', () => {
-        if (marker) {
+        if (marker && marker.coordinates) {
           const markerInstance = new mapboxgl.Marker({
             color: '#7A00E6', // Tailwind purple-500
           })
             .setLngLat(marker.coordinates)
             .addTo(map.current!);
+
+          if (marker?.popupContent) {
+            const popup = new mapboxgl.Popup({ offset: 25 }).setHTML(marker.popupContent);
+            markerInstance.setPopup(popup);
+          }
         }
       });
 
