@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import "../globals.css";
 import "easymde/dist/easymde.min.css";
 import { Navbar } from "@/components/Navbar";
+import 'mapbox-gl/dist/mapbox-gl.css';
 
 const geistSans = localFont({
   src: "../fonts/GeistVF.woff",

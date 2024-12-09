@@ -10,7 +10,7 @@
     --card-foreground: 0 0% 3.9%;
     --popover: 0 0% 100%;
     --popover-foreground: 0 0% 3.9%;
-    --primary: 0 0% 9%;
+    --primary: 271, 91%, 65%;
     --primary-foreground: 0 0% 98%;
     --secondary: 0 0% 96.1%;
     --secondary-foreground: 0 0% 9%;
@@ -37,7 +37,7 @@
     --card-foreground: 0 0% 98%;
     --popover: 0 0% 3.9%;
     --popover-foreground: 0 0% 98%;
-    --primary: 0 0% 98%;
+    --primary: 271, 91%, 65%;
     --primary-foreground: 0 0% 9%;
     --secondary: 0 0% 14.9%;
     --secondary-foreground: 0 0% 98%;
@@ -64,6 +64,17 @@
   }
   a, div, button, p, h1, h2, h3, h4, h5, h6 {
     @apply transition-colors duration-300;
+  }
+  /* Mapbox Popup Styling for Dark Theme */
+  .dark .mapboxgl-popup-content {
+    background-color: #1f2937; /* Gray-800 from Tailwind */
+    color: #f3f4f6; /* Gray-100 from Tailwind */
+    border-radius: 0.5rem;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  }
+
+  .dark .mapboxgl-popup-close-button {
+    color: #9ca3af; /* Gray-400 from Tailwind */
   }
 }
 

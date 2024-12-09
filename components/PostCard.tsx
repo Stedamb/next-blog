@@ -59,7 +59,7 @@ export function PostCard({ post }: { post: PostCardType }) {
             <span className="z-30 font-mono text-sm text-muted-foreground">
               By
               <Link href={`/blog/author/${post.author?.slug?.current}`}>
-                <span className="ml-2 font-medium text-primary hover:underline">
+                <span className="ml-2 font-medium text-foreground hover:underline">
                   {post.author.name}
                 </span>
               </Link>
