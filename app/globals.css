@@ -11,7 +11,7 @@
     --popover: 0 0% 100%;
     --popover-foreground: 0 0% 3.9%;
     --primary: 271, 91%, 65%;
-    --primary-foreground: 0 0% 98%;
+    --primary-foreground: 271, 90%, 40%;
     --secondary: 0 0% 96.1%;
     --secondary-foreground: 0 0% 9%;
     --muted: 0 0% 96.1%;
@@ -30,6 +30,7 @@
     --chart-5: 27 87% 67%;
     --radius: 0.5rem;
   }
+
   .dark {
     --background: 0 0% 3.9%;
     --foreground: 0 0% 98%;
@@ -38,7 +39,7 @@
     --popover: 0 0% 3.9%;
     --popover-foreground: 0 0% 98%;
     --primary: 271, 91%, 65%;
-    --primary-foreground: 0 0% 9%;
+    --primary-foreground: 271, 90%, 70%;
     --secondary: 0 0% 14.9%;
     --secondary-foreground: 0 0% 98%;
     --muted: 0 0% 14.9%;
@@ -56,50 +57,30 @@
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55%;
   }
+
   * {
     @apply border-border;
   }
+
   body {
     @apply transition-colors duration-300 bg-background text-foreground;
   }
+
   a, div, button, p, h1, h2, h3, h4, h5, h6 {
     @apply transition-colors duration-300;
   }
-  /* Mapbox Popup Styling for Dark Theme */
-  .dark .mapboxgl-popup-content {
-    background-color: #1f2937; /* Gray-800 from Tailwind */
-    color: #f3f4f6; /* Gray-100 from Tailwind */
-    border-radius: 0.5rem;
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-  }
 
-  .dark .mapboxgl-popup-close-button {
-    color: #9ca3af; /* Gray-400 from Tailwind */
-  }
-}
-
-@layer utilities {
-  .text-gradient {
-    @apply bg-clip-text text-transparent bg-gradient-to-tr from-[#d1c0ed] via-[#7357b2] to-[#8e44ad];
-  }
-
-  .skeleton-loading {
-    @apply overflow-hidden relative;
-  }
-
-  .skeleton-loading::before {
-    @apply absolute inset-0 rounded-lg;
-    background-color: blueviolet;
-    content: "";
-    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-  }
-
-  @keyframes pulse {
-    0%, 100% {
-      opacity: 1;
+  @layer utilities {
+    .text-gradient {
+      @apply bg-clip-text text-transparent bg-gradient-to-tr from-[#d1c0ed] via-[#7357b2] to-[#8e44ad];
     }
-    50% {
-      opacity: .5;
+
+    .card-hover {
+      @apply hover:border-purple-500 hover:shadow-[0_0_200px_-5px_rgba(168,85,247,0.3)];
+    }
+
+    .bg-blur {
+      @apply bg-background/60 backdrop-blur-md;
     }
   }
 }

@@ -12,7 +12,7 @@ import { PostCardType } from "@/types/post";
 
 export function PostCard({ post }: { post: PostCardType }) {
   return (
-    <Card className="relative flex flex-col overflow-hidden z-10 transition-all duration-200 group hover:border-purple-500 hover:shadow-[0_0_200px_-5px_rgba(168,85,247,0.3)]">
+    <Card className="relative flex flex-col overflow-hidden z-10 transition-all duration-200 group card-hover">
         <Link href={`/blog/${post.slug?.current}`} className="absolute z-20 w-full h-full"/>
           <div className="relative z-10 aspect-video">
             <Image
@@ -28,16 +28,15 @@ export function PostCard({ post }: { post: PostCardType }) {
             {post.title}
           </CardTitle>
           {post.categories && post.categories.length > 0 && (
-            <div className="flex flex-wrap gap-2">
+            <div className="flex flex-wrap items-center gap-2">
               {post.categories.map((category) => (
                 <Badge
                   key={category.title}
-                  variant="secondary"
-                  className="z-30 text-sm text-purple-700 bg-purple-500/10 dark:bg-purple-500/20 dark:text-purple-300"
+                  variant="default"
+                  className="z-30"
                 >
-                  <Link 
+                  <Link
                     href={`/blog?category=${category.title}`}
-                    className="z-30"
                   >
                     {category.title}
                   </Link>

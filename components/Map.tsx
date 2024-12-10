@@ -55,7 +55,7 @@ export default function Map({
       map.current?.on('load', () => {
         if (marker && marker.coordinates) {
           const markerInstance = new mapboxgl.Marker({
-            color: '#7A00E6', // Tailwind purple-500
+            color: '#9c27b0', // Tailwind purple-500
           })
             .setLngLat(marker.coordinates)
             .addTo(map.current!);

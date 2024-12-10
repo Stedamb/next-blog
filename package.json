@@ -26,6 +26,8 @@
     "@sanity/vision": "^3.65.0",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
+    "easymde": "^2.18.0",
+    "framer-motion": "^11.13.1",
     "lucide-react": "^0.460.0",
     "mapbox-gl": "^3.8.0",
     "markdown-it": "^14.1.0",
